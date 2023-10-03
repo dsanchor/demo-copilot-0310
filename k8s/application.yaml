@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo0310
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo0310
+  template:
+    metadata:
+      labels:
+        app: demo0310
+    spec:
+      containers:
+        - name: demo0310
+          image: ghcr.io/dsanchor/demo0310:$IMAGE_TAG
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo0310
+spec:
+  selector:
+    app: demo0310
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
