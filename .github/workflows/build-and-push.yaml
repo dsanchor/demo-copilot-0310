@@ -59,4 +59,4 @@ jobs:
         run: sed -i "s/\$IMAGE_TAG/${{ env.IMAGE_TAG }}/g" k8s/application.yaml
 
       - name: Deploy to Kubernetes
-        run: kubeclt apply -f k8s/application.yaml
+        run: kubectl apply -f k8s/application.yaml
